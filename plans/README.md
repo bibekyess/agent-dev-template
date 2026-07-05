@@ -8,7 +8,8 @@ without the plan's content passing through the orchestrator's context.
 A plan is derived from a `specs/` spec and consumed by the implementation-engineer. It is
 transient by nature (it goes stale once implemented) — unlike the spec (`specs/`, durable
 requirements) and ADRs (`adr/`, durable decisions). See `specs/README.md` for the full
-lane distinction.
+lane distinction. Like specs, plans are produced for **Tier 2** changes only — Tier 0 and
+Tier 1 skip this stage; see AGENTS.md "Scale to the task".
 
 ## Naming
 

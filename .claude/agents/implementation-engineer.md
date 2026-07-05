@@ -45,9 +45,17 @@ cannot spawn other agents.
 
 ## Phase 5 — Commit, push, PR
 
-8. Commit the **spec, plan, ADRs, and code together** (they all live in the worktree) with an imperative, scoped message explaining *what* and *why*.
+8. Commit the **spec, plan, ADRs, and code together** (they all live in the worktree) with an imperative, scoped message explaining *what* and *why*. The final commit MUST carry a lowercase `Change-Tier: trivial|small|full` trailer matching the tier the orchestrator passed you.
 9. Push the branch and open a PR against the default branch (use your host's CLI or web UI). The description must cover: what + why, files changed, intentional interface/contract changes, ADRs added/updated (filenames + one-line summaries), and a link to the spec/plan.
 10. Flip the spec's `status` to `Delivered` once the PR is ready to merge (this branch *is* the delivery).
+
+## Tier 0 (trivial/hotfix)
+
+When the orchestrator invokes you for Tier 0, there is no spec or plan to read: implement
+the described change directly, run `just check`, commit with a `Change-Tier: trivial`
+trailer, push, and open a PR. There is **no reviewer stage** for Tier 0 — the orchestrator
+awaits a one-word user confirmation before the default branch is merged. The rule that you
+work only in the worktree, never the default branch, still applies unchanged.
 
 ## Rejection loop
 

@@ -37,4 +37,5 @@ An ADR stays `Proposed` until a branch that implements it is ready to merge.
 
 ## Index
 
-(none yet — add your first ADR here)
+- [`2026-07-05-tiered-execution-model.md`](2026-07-05-tiered-execution-model.md) —
+  Tiered execution model with per-invocation reviewer model routing.

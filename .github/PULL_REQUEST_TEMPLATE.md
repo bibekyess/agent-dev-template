@@ -1,6 +1,7 @@
 ## What & why
 
 <!-- One paragraph: what this PR does and why. Link to the spec/plan if they exist. -->
+<!-- Tier: trivial | small | full — matches the final commit's `Change-Tier` trailer. -->
 
 ## Files changed
 
