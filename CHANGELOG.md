@@ -3,6 +3,18 @@
 All notable changes to this template are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Removed
+
+- The example spec, plan, and ADRs from the template's own "industrialize the
+  template" bootstrapping work (`specs/2026-07-02-industrialize-template.md`,
+  `plans/2026-07-02-industrialize-template.md`,
+  `adr/2026-07-02-quality-gate-contract-justfile.md`,
+  `adr/2026-07-02-static-github-template-versioning.md`), along with their entries
+  in `adr/README.md`'s index — so a freshly-cloned project starts with clean,
+  empty `specs/`, `plans/`, `adr/` directories instead of inherited artifacts.
+
 ## [1.0.0] — 2026-07-02
 
 Initial v1 baseline. Establishes the industry-standard, stack-agnostic multi-agent

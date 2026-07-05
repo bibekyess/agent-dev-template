@@ -37,7 +37,4 @@ An ADR stays `Proposed` until a branch that implements it is ready to merge.
 
 ## Index
 
-| Date | Title | Status |
-|------|-------|--------|
-| 2026-07-02 | Abstract quality-gate contract via a justfile | Accepted |
-| 2026-07-02 | Distribute as a static GitHub template with a TEMPLATE_VERSION marker | Accepted |
+(none yet — add your first ADR here)
