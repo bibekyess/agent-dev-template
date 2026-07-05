@@ -35,7 +35,3 @@ never collide across parallel branches. Copy `TEMPLATE.md` to start one.
 
 An ADR stays `Proposed` until a branch that implements it is ready to merge.
 
-## Index
-
-- [`2026-07-05-tiered-execution-model.md`](2026-07-05-tiered-execution-model.md) —
-  Tiered execution model with per-invocation reviewer model routing.

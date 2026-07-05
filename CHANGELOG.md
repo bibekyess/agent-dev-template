@@ -5,6 +5,23 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-07-05
+
+### Added
+
+- **Tiered execution model** — three explicit tiers replace the previous one-size pipeline:
+  Tier 0 trivial/`hotfix` (branch → implement → `just check` → PR → one-word confirmation
+  → merge, no code-reviewer stage), Tier 1 small/`quick-fix` (implement → review, spec and
+  plan skipped, code-reviewer on `sonnet`), and Tier 2 full (spec → research → plan →
+  implement → review, code-reviewer on `opus`). The orchestrator now **proposes and
+  confirms** the tier before starting work, blocking until the user replies. The single
+  `code-reviewer` agent is invoked with a **per-invocation `model` override** (`sonnet` on
+  Tier 0/1, `opus` on Tier 2) rather than adding a second reviewer file. Every implementation
+  commit now carries a `Change-Tier: trivial | small | full` trailer. Adds the new
+  `.claude/commands/hotfix.md` command for the Tier 0 flow. Preserves every existing
+  guardrail: `just check` runs on every tier, hooks are unchanged, there is no direct-to-main
+  work, and merges still require explicit user confirmation.
+
 ### Removed
 
 - The example spec, plan, and ADRs from the template's own "industrialize the
@@ -14,6 +31,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   `adr/2026-07-02-static-github-template-versioning.md`), along with their entries
   in `adr/README.md`'s index — so a freshly-cloned project starts with clean,
   empty `specs/`, `plans/`, `adr/` directories instead of inherited artifacts.
+- The example spec, plan, and ADR from this template's own tiered-execution-model
+  bootstrapping work (`specs/2026-07-05-tiered-pipeline.md`,
+  `plans/2026-07-05-tiered-pipeline.md`,
+  `adr/2026-07-05-tiered-execution-model.md`), along with its entry in `adr/README.md`'s
+  index — so a freshly-cloned project starts with clean, empty `specs/`, `plans/`, `adr/`
+  directories instead of inherited artifacts.
 
 ## [1.0.0] — 2026-07-02
 
