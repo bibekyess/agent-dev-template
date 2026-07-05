@@ -2,7 +2,8 @@
 
 Each spec captures **what** to build and **why** — the requirements behind a change,
 before anyone decides *how*. The requirements-engineer produces one per feature; the
-planner and implementer consume it.
+planner and implementer consume it. Specs are produced for **Tier 2** (full pipeline)
+changes only — Tier 0 and Tier 1 skip this stage; see AGENTS.md "Scale to the task".
 
 ## How this differs from the other artifact homes
 

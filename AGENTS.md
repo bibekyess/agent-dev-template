@@ -20,16 +20,35 @@ when removed, delete it.
 
 ## Scale to the task
 
-For a **trivial change** — a localized fix with no new dependency, interface, or schema
-change, and nothing that would trigger an ADR — skip spec + plan and go straight to
-implement + review (use `/quick-fix`). Anything outside that boundary uses the full
-pipeline.
+A **trivial change** is a localized fix with no new dependency, interface, or schema
+change, and nothing that would trigger an ADR. This boundary is defined **once here**;
+every agent/command file references it rather than restating it. Three tiers:
+
+- **Tier 0 — Trivial / hotfix** (`/hotfix`, or orchestrator proposal): a change squarely
+  inside the trivial boundary. Flow: branch → implement → `just check` → open PR →
+  one-word user confirmation → merge. No code-reviewer stage. All agent work on `sonnet`.
+- **Tier 1 — Small change** (`/quick-fix`): a scoped change with no schema/interface
+  change and nothing ADR-worthy. Flow: implement → review (spec + plan skipped);
+  code-reviewer runs on `sonnet`.
+- **Tier 2 — Full pipeline**: any change with a new dependency, interface, or schema
+  change, or that is otherwise ADR-worthy. Flow: spec → (research) → plan → implement →
+  review; `opus` on requirements, planning, and review.
+
+Spec + plan apply only to Tier 2; Tier 0 additionally produces no ADR. Every tier still
+requires `just check` before merge, branch/worktree-only work (never the primary
+checkout on the default branch), and a one-word user confirmation before merging the
+default branch.
 
 ## Model routing
 
-Haiku = cheap breadth (research); opus = high-stakes reasoning (requirements, planning,
-review); sonnet = implementation. These match the `model:` fields declared in each
-agent's frontmatter.
+Haiku = cheap breadth (research); opus = high-stakes reasoning (requirements, planning);
+sonnet = implementation. These match the `model:` fields declared in each agent's
+frontmatter: researcher `haiku`; implementation-engineer `sonnet`; requirements-engineer
+and technical-planner `opus` (Tier 2 only); orchestrator `opus`. The **code-reviewer**'s
+frontmatter default is `opus`, but its *effective* model is set **per-invocation by the
+orchestrator** — `sonnet` for Tier 1 reviews, `opus` for Tier 2 reviews (Tier 0 has no
+reviewer) — the one intentional frontmatter-vs-effective difference; keep this note in
+sync with the frontmatter to avoid drift.
 
 ## Conventions
 
@@ -72,6 +91,9 @@ an `Accepted` ADR — to change one, add a new ADR and mark the old one `Superse
 - Branch before committing if you're on the main branch.
 - Write imperative, scoped commit messages explaining *why* the change was made.
 - Run `just check` before committing; commit only when it passes.
+- Every implementation commit carries a `Change-Tier: trivial | small | full` trailer
+  (lowercase, one value, matching the tier that ran) — the implementation-engineer adds
+  it on the final commit.
 
 ## When you finish
 
