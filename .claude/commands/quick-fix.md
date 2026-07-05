@@ -9,11 +9,11 @@ boundary must use the full pipeline (`/spec` → `/plan` → `/implement` → `/
 
 Steps (spec and plan stages are intentionally skipped):
 
-1. Confirm the change is trivial per the boundary above. If in doubt, use the full pipeline.
+1. Confirm the change is a small change (Tier 1) per the boundary above. If in doubt, use the full pipeline.
 2. Create a feature worktree if one does not exist:
    `git worktree add .claude/worktrees/<slug> -b feat/<slug>`
 3. Spawn `implementation-engineer` directly with the worktree path, the change description,
-   and a note that this is a trivial fast-path (no spec/plan files to read).
+   and a note that this is the small-change fast-path (Tier 1; no spec/plan files to read).
 4. The engineer implements, runs `just check`, commits, pushes, and opens a PR.
 5. Spawn `code-reviewer` on the PR with a per-invocation **`model: sonnet`** override
    (Tier 1); loop on `REQUEST_CHANGES` until APPROVED.
